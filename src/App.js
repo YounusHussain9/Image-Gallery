@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 
 import ImageCart from "./components/ImageCart";
 import SearchImage from "./components/SearchImage";
