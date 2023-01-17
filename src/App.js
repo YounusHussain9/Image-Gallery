@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 import ImageCart from "./components/ImageCart";
+import SearchImage from "./components/SearchImage";
 
 const App = () => {
   const [Images, setImages] = useState([]);
-  const [search, setSearch] = useState("egg");
+  const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   //get api data
@@ -24,16 +25,27 @@ const App = () => {
 
   useEffect(() => {
     getDataFun();
-  }, []);
+  }, [search]);
 
   return (
     <>
+      <SearchImage searchValue={(text) => setSearch(text)} />
       <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-4">
-          {Images.map((data) => (
-            <ImageCart key={data.id} data={data} />
-          ))}
-        </div>
+        {!isLoading && Images.length === 0 && (
+          <h1 className="text-2xl font-mono flex justify-center">
+            No Image Found
+          </h1>
+        )}
+
+        {isLoading ? (
+          <h1 className="text-2xl font-mono flex justify-center">Loading...</h1>
+        ) : (
+          <div className="grid grid-cols-3 gap-4">
+            {Images.map((data) => (
+              <ImageCart key={data.id} data={data} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

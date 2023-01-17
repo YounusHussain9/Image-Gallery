@@ -3,8 +3,8 @@ import React from "react";
 const ImageCart = ({ data }) => {
   const tags = data.tags.split(",");
   return (
-    <div className="mr-2 mt-5">
-      <div className="max-w-xs rounded overflow-hidden shadow-lg">
+    <div className="px-11 py-5">
+      <div className="max-w-xs rounded overflow-hidden shadow-lg m-auto">
         <h1 className="text-3xl font-bold underline">
           <img className="w-full" src={data.webformatURL} />
         </h1>
